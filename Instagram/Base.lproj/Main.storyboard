@@ -262,7 +262,7 @@
                                 </constraints>
                                 <state key="normal" title="ログイン" backgroundImage="btn"/>
                                 <connections>
-                                    <action selector="handleLoginButton:" destination="RhR-lE-hOM" eventType="touchUpInside" id="PZf-iC-obl"/>
+                                    <action selector="handleLoginButton:" destination="RhR-lE-hOM" eventType="touchUpInside" id="GS5-z4-FqW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8n2-xi-WtI">
@@ -315,6 +315,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2wf-mf-HVQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="642"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="fJC-eb-N8o" id="FN1-4E-cKd"/>
+                                    <outlet property="delegate" destination="fJC-eb-N8o" id="Z3s-zh-pAy"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

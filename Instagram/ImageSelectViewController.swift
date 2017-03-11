@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageSelectViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ImageSelectViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AdobeUXImageEditorViewControllerDelegate {
 
     
     @IBAction func handleLibraryButton(_ sender: Any) {
@@ -66,11 +66,14 @@ class ImageSelectViewController: UIViewController, UIImagePickerControllerDelega
             // あとでAdobeUXImageEditorを起動する
             // AdobeUXImageEditorで、受け取ったimageを加工できる
             // ここでpresentViewControllerを呼び出しても表示されないためメソッドが終了してから呼ばれるようにする
+            
             DispatchQueue.main.async {
                 // AdobeImageEditorを起動する
+                
                 let adobeViewController = AdobeUXImageEditorViewController(image: image)
                 adobeViewController.delegate = self
                 self.present(adobeViewController, animated: true, completion:  nil)
+                
             }
         }
         
