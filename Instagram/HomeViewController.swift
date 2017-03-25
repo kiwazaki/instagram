@@ -216,24 +216,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 
             }
             
-     /*
-        // Firebaseに保存するデータの準備
-        if (FIRAuth.auth()?.currentUser?.uid) != nil {
-            if (FIRAuth.auth()?.currentUser?.displayName) != nil {
-                
-                let postRef = FIRDatabase.database().reference().child(Const.PostPath).child(postData.id!)
-                
-                postData.commentArray.append("\(FIRAuth.auth()?.currentUser?.displayName!) : \(comment_text)")
-                
-                
-                let commentArray = ["commentArray": postData.commentArray]
-                postRef.updateChildValues(commentArray)
-                
-                print("投稿しました")
-            }
-            
-        }
-        */
             
             
     }
