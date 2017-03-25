@@ -49,22 +49,6 @@ class PostTableViewCell: UITableViewCell {
         likeLabel.text = "\(likeNumber)"
         
         
-        
-            /////////コメントを追加し、書き出す/////////////
- /*
-        self.commentLabel.text = "\(postData.name!) : \(postData.commentField)"
-
-        var commentArray: [String] = []
-
- 
-        let comment = postData.commentArray.joined()
-        
-        for comment in commentArray{
-            commentLabel.text = "\(postData.name!): \(postData.comment)" + "\n"
-        }
- 
-    */    
-        //////////////////////////////////
  
 
         
@@ -98,20 +82,6 @@ class PostTableViewCell: UITableViewCell {
         }
 
         
-        
-        
-   /*
-
-        //コメントが入ったら投稿者の名前とコメントを改行しながら追加
-
-        for commentData in 0 ..< postData.commentArray.count   {
-            if commentData > 0 {
-                commentLabel.text! = commentLabel.text! + "\n"
-            } else{
-            commentLabel.text! = commentLabel.text! + "\(postData.commentArray[commentData])" + "\n"
-        }
-        }
- */
         
         
         
