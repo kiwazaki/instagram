@@ -15,7 +15,6 @@ class PostViewController: UIViewController {
     var image: UIImage!
     
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var textField: UITextField!
 
     // 投稿ボタンをタップしたときに呼ばれるメソッド
@@ -31,6 +30,8 @@ class PostViewController: UIViewController {
         // 辞書を作成してFirebaseに保存する
         let postRef = FIRDatabase.database().reference().child(Const.PostPath)
         let postData = ["caption": textField.text!, "image": imageString, "time": String(time), "name": name!]
+        
+        
         postRef.childByAutoId().setValue(postData)
         
         // HUDで投稿完了を表示する
@@ -39,6 +40,10 @@ class PostViewController: UIViewController {
         // 全てのモーダルを閉じる
         UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
     }
+    
+    
+    
+    
     
      // キャンセルボタンをタップしたときに呼ばれるメソッド
     @IBAction func handleCancelButton(_ sender: Any) {

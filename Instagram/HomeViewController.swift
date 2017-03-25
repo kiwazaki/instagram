@@ -119,6 +119,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // セル内のボタンのアクションをソースコードで設定する
         cell.likeButton.addTarget(self, action:#selector(handleButton(sender:event:)), for:  UIControlEvents.touchUpInside)
         
+        cell.commentBtn.addTarget(self, action:#selector(handleCommentButton(sender:event:)), for:  UIControlEvents.touchUpInside)
         return cell
     }
     
@@ -144,6 +145,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // 配列からタップされたインデックスのデータを取り出す
         let postData = postArray[indexPath!.row]
+
         
         // Firebaseに保存するデータの準備
         if let uid = FIRAuth.auth()?.currentUser?.uid {
@@ -170,5 +172,73 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+  ////////////////////////////////////////////
+    
+    func handleCommentButton(sender: UIButton, event:UIEvent) {
+        
+        // タップされたセルのインデックスを求める
+        let touch = event.allTouches?.first
+        let point = touch!.location(in: self.tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        let cell = tableView.cellForRow(at: indexPath!)! as! PostTableViewCell
+        
+         
+        // セル内のコメントテキストフィールド
+        let comment_text = cell.commentField.text!
+        
+    
+        //コメントが入力されていたら、Firebaseに保存する
+        if (comment_text.characters.isEmpty) {
+            
+            print("comment_text\(cell.commentField)")
+            
+        }else{
+            
+        // 配列からタップされたインデックスのデータを取り出す
+        let postData = postArray[indexPath!.row]
+            
+            
+            // Firebaseに保存するデータの準備
+            if (FIRAuth.auth()?.currentUser?.uid) != nil {
+                if (FIRAuth.auth()?.currentUser?.displayName) != nil {
+                    
+                    let postRef = FIRDatabase.database().reference().child(Const.PostPath).child(postData.id!)
+                    
+                    let displayName = (FIRAuth.auth()?.currentUser?.displayName)!
+                    let commentStr = "\(displayName) : \(comment_text)"
+                    postData.commentArray.append(commentStr)
+                    
+                    let commentArray = ["commentArray": postData.commentArray]
+                    postRef.updateChildValues(commentArray)
+                    
+                    print("投稿しました")
+                }
+                
+            }
+            
+     /*
+        // Firebaseに保存するデータの準備
+        if (FIRAuth.auth()?.currentUser?.uid) != nil {
+            if (FIRAuth.auth()?.currentUser?.displayName) != nil {
+                
+                let postRef = FIRDatabase.database().reference().child(Const.PostPath).child(postData.id!)
+                
+                postData.commentArray.append("\(FIRAuth.auth()?.currentUser?.displayName!) : \(comment_text)")
+                
+                
+                let commentArray = ["commentArray": postData.commentArray]
+                postRef.updateChildValues(commentArray)
+                
+                print("投稿しました")
+            }
+            
+        }
+        */
+            
+            
+    }
+    
+    
+ }
     
 }
